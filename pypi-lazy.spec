@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-lazy
-Version  : 1.5
-Release  : 1
-URL      : https://files.pythonhosted.org/packages/29/00/ba9688438904f0cd446e1986deb826610385c042776dd939ecb2b360b3bd/lazy-1.5.tar.gz
-Source0  : https://files.pythonhosted.org/packages/29/00/ba9688438904f0cd446e1986deb826610385c042776dd939ecb2b360b3bd/lazy-1.5.tar.gz
+Version  : 1.6
+Release  : 2
+URL      : https://files.pythonhosted.org/packages/3c/e6/704c32da169b023a9ac86d116f5433b42d02b4afeda24c9400a69b3530e5/lazy-1.6.tar.gz
+Source0  : https://files.pythonhosted.org/packages/3c/e6/704c32da169b023a9ac86d116f5433b42d02b4afeda24c9400a69b3530e5/lazy-1.6.tar.gz
 Summary  : Lazy attributes for Python objects
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -15,6 +15,8 @@ Requires: pypi-lazy-python = %{version}-%{release}
 Requires: pypi-lazy-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(py)
+BuildRequires : pypi(setuptools)
+BuildRequires : pypi(wheel)
 BuildRequires : pypi-pluggy
 BuildRequires : pypi-pytest
 BuildRequires : pypi-tox
@@ -51,10 +53,10 @@ python3 components for the pypi-lazy package.
 
 
 %prep
-%setup -q -n lazy-1.5
-cd %{_builddir}/lazy-1.5
+%setup -q -n lazy-1.6
+cd %{_builddir}/lazy-1.6
 pushd ..
-cp -a lazy-1.5 buildavx2
+cp -a lazy-1.6 buildavx2
 popd
 
 %build
@@ -62,15 +64,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680185281
+export SOURCE_DATE_EPOCH=1694706858
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/

@@ -5,7 +5,7 @@
 #
 Name     : pypi-lazy
 Version  : 1.6
-Release  : 2
+Release  : 3
 URL      : https://files.pythonhosted.org/packages/3c/e6/704c32da169b023a9ac86d116f5433b42d02b4afeda24c9400a69b3530e5/lazy-1.6.tar.gz
 Source0  : https://files.pythonhosted.org/packages/3c/e6/704c32da169b023a9ac86d116f5433b42d02b4afeda24c9400a69b3530e5/lazy-1.6.tar.gz
 Summary  : Lazy attributes for Python objects
